@@ -10,4 +10,9 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function getComments()
+    {
+        return $this->comments()->with('owner')->get()->threaded();;
+    }
 }

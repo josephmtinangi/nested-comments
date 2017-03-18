@@ -10,14 +10,11 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function (App\Post $post) {
 
-    $comments = $post->comments()->with('owner')->get()->threaded();
-
-    // return $comments;
+    $comments = $post->getComments();
 
     return view('posts.show', compact('post', 'comments'));
 });
 
-// /posts/{{ $post->id }}/comments
 Route::post('/posts/{post}/comments', function (App\Post $post) {
     $post->comments()->create([
         'user_id' => Auth::id(),
