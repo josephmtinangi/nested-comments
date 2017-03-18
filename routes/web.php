@@ -16,7 +16,8 @@ Route::get('/posts/{post}', function (App\Post $post) {
 Route::post('/posts/{post}/comments', function (App\Post $post) {
     $post->comments()->create([
         'user_id' => Auth::id(),
-        'body' => request('body')
+        'body' => request('body'),
+        'parent_id' => request('parent_id', null)
     ]);
 
     return back();
