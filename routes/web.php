@@ -10,7 +10,13 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function (App\Post $post) {
 
-    return $post->comments->groupBy('parent_id');
+    $comments = $post->comments->groupBy('parent_id');
+
+    $comments['root'] = $comments[''];
+
+    unset($comments['']);
+
+    return $comments;
 
     return view('posts.show')->withPost($post);
 });
