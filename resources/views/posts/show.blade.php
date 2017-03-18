@@ -15,12 +15,22 @@
 
     <h3>Comments</h3>
 
-    @foreach($post->comments as $comment)
-        <article>
-            <h3>{{ $comment->owner->name }} said...</h3>
-            {{ $comment->body }}
-        </article>
-    @endforeach
+    <ul>
+        @foreach($post->comments as $comment)
+            <li>
+                <article>
+                    <h3>{{ $comment->owner->name }} said...</h3>
+                    {{ $comment->body }}
+
+                     @include('comments.form')
+
+                </article>            
+            </li>
+        @endforeach    
+    </ul>
+
+    <h3>Leave a reply</h3>
+    @include('comments.form')
 
 </body>
 </html>
