@@ -10,15 +10,9 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function (App\Post $post) {
 
-    $post->load('comments.owner'); 
+    $comments = App\Comment::forPost($post)->get()->threaded();
 
-    $comments = $post->comments->groupBy('parent_id');
-
-    $comments['root'] = $comments[''];
-
-    unset($comments['']);
-
-    // return $post;
+    // return $comments;
 
     return view('posts.show', compact('post', 'comments'));
 });
