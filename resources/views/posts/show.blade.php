@@ -15,5 +15,12 @@
 
     <h3>Comments</h3>
 
+    @foreach($post->comments as $comment)
+        <article>
+            <h3>{{ $comment->owner->name }} said...</h3>
+            {{ $comment->body }}
+        </article>
+    @endforeach
+
 </body>
 </html>
