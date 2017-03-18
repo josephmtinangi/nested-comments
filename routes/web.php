@@ -16,9 +16,9 @@ Route::get('/posts/{post}', function (App\Post $post) {
 
     unset($comments['']);
 
-    return $comments;
+    // return $comments;
 
-    return view('posts.show')->withPost($post);
+    return view('posts.show', compact('post', 'comments'));
 });
 
 // /posts/{{ $post->id }}/comments
