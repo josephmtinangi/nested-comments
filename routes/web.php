@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/posts/{post}', function (App\Post $post) {
 
-    $comments = App\Comment::forPost($post)->get()->threaded();
+    $comments = $post->comments()->with('owner')->get()->threaded();
 
     // return $comments;
 
